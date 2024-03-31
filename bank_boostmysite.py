@@ -62,11 +62,16 @@ def view_account_users(accounts):
 def change_pin_number(accounts, num, old_pin, new_pin):
     for account in accounts:
         if account.acc_no == num:
-            num1 = old_pin
-            num2 = new_pin
-            num1 = num2
-            save_accounts(accounts)
-        print("you changed pin number")
+            if account.pin == old_pin:  # Check if the old pin matches
+                account.pin = new_pin  # Update the pin
+                save_accounts(accounts)  # Save the updated account list
+                print("PIN changed successfully.")
+                return
+            else:
+                print("Incorrect old PIN. PIN change failed.")
+                return
+    print("Account not found.")
+
 
 def balance_enquiry(accounts, num):
     for account in accounts:
@@ -115,8 +120,8 @@ def main():
             save_accounts(accounts)
         elif result == '4':
             num = int(input("Enter the account number: "))
-            old_pin= int(input("Enter your current pin number:"))
-            new_pin= int(input("Enter the new pin number:"))
+            old_pin = int(input("Enter your current pin number:"))
+            new_pin = int(input("Enter the new pin number:"))
             change_pin_number(accounts, num, old_pin, new_pin)
             save_accounts(accounts)
         elif result == '5':
