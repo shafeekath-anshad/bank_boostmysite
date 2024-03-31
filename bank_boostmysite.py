@@ -62,9 +62,9 @@ def view_account_users(accounts):
 def change_pin_number(accounts, num, old_pin, new_pin):
     for account in accounts:
         if account.acc_no == num:
-            if account.pin == old_pin:  # Check if the old pin matches
-                account.pin = new_pin  # Update the pin
-                save_accounts(accounts)  # Save the updated account list
+            if account.pin == old_pin:  
+                account.pin = new_pin 
+                save_accounts(accounts)  
                 print("PIN changed successfully.")
                 return
             else:
